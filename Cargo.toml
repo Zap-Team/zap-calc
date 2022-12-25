@@ -1,0 +1,9 @@
+[package]
+name = "zap-calc"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dallas", "Apach876"]
+description = "A modern smart calculator for Russian Educational Organizations."
+
+[dependencies]
+iced = "0.6"
