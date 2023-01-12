@@ -1,3 +1,5 @@
+<!-- Офигеть релизная версия быстрая. Оптимизирующий компилятор просто бомба. -->
+
 # In development
 This is the modern smart calculator made for Russian Educational Organizations.
 

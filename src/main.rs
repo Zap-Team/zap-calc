@@ -1,8 +1,7 @@
 mod application;
 mod constants;
-mod scene;
-mod styles;
-mod utils;
+mod evaluator;
+mod macros;
 
 use iced::{Application, Settings};
 use application::ZapCalc;

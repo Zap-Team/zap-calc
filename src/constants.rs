@@ -2,29 +2,54 @@ use iced::Padding;
 
 /// Enum with events emitting
 /// while program running.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Message {
     QueryUpdated(String),
-    ButtonClicked,
-    CIButtonClicked
+    Execute,
+
+    // Buttons:
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Zero,
+
+    // Operators:
+    Add,
+    Sub,
+    Mul,
+    Div,
+    Percent,
+
+    // Other characters:
+    Pi,
+    Square,
+    Sqrt,
+    Dot
 }
 
-/// Enum with two types of buttons:
-/// * [`ButtonType::Standard`] - for standard buttons.
-/// * [`ButtonType::CoreImportant`] - for special set of buttons.
-pub enum ButtonType {
-    Standard,
-    CoreImportant
-}
+/// To access enum members directly.
+use Message::*;
 
 /// List with a lists containing string
-/// sources of building buttons.
-pub const BUTTONS_SOURCE: [[&'static str; 5]; 4] = [
-    ["7", "8", "9", "+", "π"],
-    ["4", "5", "6", "-", "²"],
-    ["1", "2", "3", "*", "√"],
-    ["0", ".", "%", "/", "="]
+/// sources for building buttons.
+pub const BUTTONS_SOURCE: [[Message; 5]; 4] = [
+    [Seven, Eight, Nine   , Add, Pi     ],
+    [Four , Five , Six    , Sub, Square ],
+    [One  , Two  , Three  , Mul, Sqrt   ],
+    [Zero , Dot  , Percent, Div, Execute]
 ];
 
-/// Padding accepted for all widget on the screen.
+/// Padding accepted for all widgets on the screen.
 pub const DEFAULT_PADDING: Padding = Padding::new(1);
+
+/// Characters must be replaced with another before
+/// evaluating full queue.
+pub const RESERVED_CHARS: [char; 3] = [
+    'π', '²', '√'
+];

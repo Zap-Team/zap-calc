@@ -1,13 +1,13 @@
+use crate::application::scene::get_scene;
+use crate::application::utils;
 use crate::constants::Message;
-use crate::scene::get_scene;
-use crate::utils::ApplicationObjects;
 
 use iced::executor::Default;
 use iced::{Application, Command, Element, Theme};
 
 /// Main structure for running application.
 pub struct ZapCalc {
-    objects: ApplicationObjects
+    objects: utils::ApplicationObjects
 }
 
 impl Application for ZapCalc {
@@ -18,7 +18,7 @@ impl Application for ZapCalc {
 
     fn new(_flags: Self::Flags) -> (ZapCalc, Command<Self::Message>) {
         (
-            ZapCalc { objects: ApplicationObjects::new() },
+            ZapCalc { objects: utils::ApplicationObjects::new() },
             Command::none()
         )
     }
@@ -32,11 +32,12 @@ impl Application for ZapCalc {
             Message::QueryUpdated(message) => {
                 self.objects.query = message;
             },
-            Message::ButtonClicked => {
-                println!("Default button pressed.");
+            Message::Execute => {
+                println!("Must be executed.");
             },
-            Message::CIButtonClicked => {
-                println!("Core important button pressed.");
+            _ => {
+                let label = utils::get_literal_equivalent(_message);
+                self.objects.query.push_str(label.as_str());
             }
         }
 
